@@ -1,0 +1,23 @@
+{
+  "name": "graphql-lsp-plugin",
+  "description": "GraphQL language server for code intelligence in .graphql and .gql files",
+  "version": "0.1.0",
+  "author": {
+    "name": "vantreeseba"
+  },
+  "category": "development",
+  "strict": false,
+  "lspServers": {
+    "graphql": {
+      "command": "graphql-lsp",
+      "args": [
+        "server",
+        "--method=stream"
+      ],
+      "extensionToLanguage": {
+        ".graphql": "graphql",
+        ".gql": "graphql"
+      }
+    }
+  }
+}

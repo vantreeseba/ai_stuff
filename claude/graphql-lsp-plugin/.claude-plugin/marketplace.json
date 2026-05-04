@@ -1,0 +1,18 @@
+{
+  "name": "graphql-local",
+  "owner": {
+    "name": "vantreeseba"
+  },
+  "plugins": [
+    {
+      "name": "graphql-lsp-plugin",
+      "description": "GraphQL language server for code intelligence in .graphql and .gql files",
+      "version": "0.1.0",
+      "author": {
+        "name": "vantreeseba"
+      },
+      "source": "./graphql-lsp",
+      "category": "development"
+    }
+  ]
+}
