@@ -1,0 +1,36 @@
+{
+  "name": "typescript-lsp-plugin",
+  "description": "TypeScript language server with support for embedded GraphQL via @0no-co/graphqlsp when configured in tsconfig.json",
+  "version": "0.1.0",
+  "author": {
+    "name": "vantreeseba"
+  },
+  "category": "development",
+  "strict": false,
+  "lspServers": {
+    "typescript": {
+      "command": "typescript-language-server",
+      "args": [
+        "--stdio"
+      ],
+      "extensionToLanguage": {
+        ".ts": "typescript",
+        ".tsx": "typescriptreact",
+        ".js": "javascript",
+        ".jsx": "javascriptreact"
+      },
+      "initializationOptions": {
+        "plugins": [
+          {
+            "name": "@0no-co/graphqlsp",
+            "location": "node_modules"
+          }
+        ],
+        "tsserver": {
+          "logVerbosity": "off",
+          "useSyntaxServer": "auto"
+        }
+      }
+    }
+  }
+}
