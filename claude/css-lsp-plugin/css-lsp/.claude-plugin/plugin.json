@@ -1,0 +1,24 @@
+{
+  "name": "css-lsp-plugin",
+  "description": "CSS language server for code intelligence in .css, .scss, .sass, and .less files via vscode-css-language-server",
+  "version": "0.1.0",
+  "author": {
+    "name": "vantreeseba"
+  },
+  "category": "development",
+  "strict": false,
+  "lspServers": {
+    "css": {
+      "command": "vscode-css-language-server",
+      "args": [
+        "--stdio"
+      ],
+      "extensionToLanguage": {
+        ".css": "css",
+        ".scss": "scss",
+        ".sass": "sass",
+        ".less": "less"
+      }
+    }
+  }
+}

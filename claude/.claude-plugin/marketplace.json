@@ -1,0 +1,48 @@
+{
+  "name": "vantreeseba-local",
+  "owner": {
+    "name": "vantreeseba"
+  },
+  "plugins": [
+    {
+      "name": "haxe-lsp-plugin",
+      "description": "Haxe language server for code intelligence in .hx files",
+      "version": "0.1.0",
+      "author": {
+        "name": "vantreeseba"
+      },
+      "source": "./haxe-lsp-plugin/haxe-lsp",
+      "category": "development"
+    },
+    {
+      "name": "graphql-lsp-plugin",
+      "description": "",
+      "version": "0.1.0",
+      "author": {
+        "name": "vantreeseba"
+      },
+      "source": "./graphql-lsp-plugin/graphql-lsp",
+      "category": "development"
+    },
+    {
+      "name": "typescript-lsp-plugin",
+      "description": "",
+      "version": "0.1.0",
+      "author": {
+        "name": "vantreeseba"
+      },
+      "source": "./typescript-lsp-plugin/typescript-lsp",
+      "category": "development"
+    },
+    {
+      "name": "css-lsp-plugin",
+      "description": "CSS language server for code intelligence in .css, .scss, .sass, and .less files via vscode-css-language-server",
+      "version": "0.1.0",
+      "author": {
+        "name": "vantreeseba"
+      },
+      "source": "./css-lsp-plugin/css-lsp",
+      "category": "development"
+    }
+  ]
+}
