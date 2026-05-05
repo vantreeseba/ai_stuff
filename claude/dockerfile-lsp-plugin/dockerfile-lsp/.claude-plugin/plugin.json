@@ -14,8 +14,7 @@
         "--stdio"
       ],
       "extensionToLanguage": {
-        ".dockerfile": "dockerfile",
-        "Dockerfile": "dockerfile"
+        ".dockerfile": "dockerfile"
       }
     }
   }
