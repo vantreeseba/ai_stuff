@@ -1,0 +1,22 @@
+{
+  "name": "yaml-lsp-plugin",
+  "description": "YAML language server for code intelligence in .yaml and .yml files via yaml-language-server",
+  "version": "0.1.0",
+  "author": {
+    "name": "vantreeseba"
+  },
+  "category": "development",
+  "strict": false,
+  "lspServers": {
+    "yaml": {
+      "command": "yaml-language-server",
+      "args": [
+        "--stdio"
+      ],
+      "extensionToLanguage": {
+        ".yaml": "yaml",
+        ".yml": "yaml"
+      }
+    }
+  }
+}

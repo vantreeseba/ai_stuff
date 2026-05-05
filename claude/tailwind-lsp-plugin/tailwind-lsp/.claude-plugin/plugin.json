@@ -1,0 +1,26 @@
+{
+  "name": "tailwind-lsp-plugin",
+  "description": "Tailwind CSS language server for class name completions and diagnostics via @tailwindcss/language-server",
+  "version": "0.1.0",
+  "author": {
+    "name": "vantreeseba"
+  },
+  "category": "development",
+  "strict": false,
+  "lspServers": {
+    "tailwindcss": {
+      "command": "tailwindcss-language-server",
+      "args": [
+        "--stdio"
+      ],
+      "extensionToLanguage": {
+        ".html": "html",
+        ".css": "css",
+        ".ts": "typescript",
+        ".tsx": "typescriptreact",
+        ".js": "javascript",
+        ".jsx": "javascriptreact"
+      }
+    }
+  }
+}

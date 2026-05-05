@@ -43,6 +43,56 @@
       },
       "source": "./css-lsp-plugin/css-lsp",
       "category": "development"
+    },
+    {
+      "name": "html-lsp-plugin",
+      "description": "HTML language server for code intelligence in .html and .htm files via vscode-html-language-server",
+      "version": "0.1.0",
+      "author": {
+        "name": "vantreeseba"
+      },
+      "source": "./html-lsp-plugin/html-lsp",
+      "category": "development"
+    },
+    {
+      "name": "json-lsp-plugin",
+      "description": "JSON language server for code intelligence in .json and .jsonc files via vscode-json-language-server",
+      "version": "0.1.0",
+      "author": {
+        "name": "vantreeseba"
+      },
+      "source": "./json-lsp-plugin/json-lsp",
+      "category": "development"
+    },
+    {
+      "name": "yaml-lsp-plugin",
+      "description": "YAML language server for code intelligence in .yaml and .yml files via yaml-language-server",
+      "version": "0.1.0",
+      "author": {
+        "name": "vantreeseba"
+      },
+      "source": "./yaml-lsp-plugin/yaml-lsp",
+      "category": "development"
+    },
+    {
+      "name": "tailwind-lsp-plugin",
+      "description": "Tailwind CSS language server for class name completions and diagnostics via @tailwindcss/language-server",
+      "version": "0.1.0",
+      "author": {
+        "name": "vantreeseba"
+      },
+      "source": "./tailwind-lsp-plugin/tailwind-lsp",
+      "category": "development"
+    },
+    {
+      "name": "dockerfile-lsp-plugin",
+      "description": "Dockerfile language server for code intelligence in Dockerfiles via dockerfile-language-server-nodejs",
+      "version": "0.1.0",
+      "author": {
+        "name": "vantreeseba"
+      },
+      "source": "./dockerfile-lsp-plugin/dockerfile-lsp",
+      "category": "development"
     }
   ]
 }

@@ -1,0 +1,22 @@
+{
+  "name": "dockerfile-lsp-plugin",
+  "description": "Dockerfile language server for code intelligence in Dockerfiles via dockerfile-language-server-nodejs",
+  "version": "0.1.0",
+  "author": {
+    "name": "vantreeseba"
+  },
+  "category": "development",
+  "strict": false,
+  "lspServers": {
+    "dockerfile": {
+      "command": "docker-langserver",
+      "args": [
+        "--stdio"
+      ],
+      "extensionToLanguage": {
+        ".dockerfile": "dockerfile",
+        "Dockerfile": "dockerfile"
+      }
+    }
+  }
+}
