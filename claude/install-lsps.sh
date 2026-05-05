@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SUDO=""
+if [[ "${1:-}" == "--sudo" ]]; then
+  SUDO="sudo"
+fi
+
 MARKETPLACE="vantreeseba-local"
 
 # haxe-lsp-plugin uses a local binary — no npm package needed
@@ -27,7 +32,7 @@ PLUGINS=(
 )
 
 echo "==> Installing npm LSP packages globally..."
-npm install -g "${NPM_PACKAGES[@]}"
+$SUDO npm install -g "${NPM_PACKAGES[@]}"
 
 echo ""
 echo "==> Installing Claude plugins..."
