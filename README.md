@@ -11,6 +11,7 @@ Personal Claude Code / OpenCode configuration: LSP plugins and skills.
 | `skills/` | Shared skills. |
 | `lsp-npm-packages.txt` | The npm packages providing the LSP binaries, read by both installers. |
 | `sync-opencode-lsp.py` | Regenerates everything under `opencode/` from the Claude plugin manifests. |
+| `.github/workflows/check.yml` | CI: fails if the generated configs are stale, or if any JSON/shell is broken. |
 
 ## LSP servers
 
@@ -35,6 +36,9 @@ The Claude plugin manifests are the source of truth. Edit
 ./sync-opencode-lsp.py
 ```
 
+CI runs `./sync-opencode-lsp.py --check` on every PR, so a manifest edit without
+a regenerate fails the build rather than silently drifting.
+
 That regenerates `opencode/opencode.json`, `opencode/lsp/*.json`, and the
 per-plugin `opencode.json` files. For a brand-new plugin, also add it to
 `claude/.claude-plugin/marketplace.json`, the `PLUGINS` list in
@@ -48,3 +52,15 @@ The translation between the two formats:
 | `extensionToLanguage` | `extensions` (the keys; OpenCode infers the language) |
 | `initializationOptions` | `initialization` |
 | `env` | `env` |
+| `${VAR}` | `{env:VAR}` |
+
+`${CLAUDE_PLUGIN_ROOT}`, `${CLAUDE_PLUGIN_DATA}` and `${CLAUDE_PROJECT_DIR}` have
+no OpenCode equivalent; the generator errors out instead of emitting a variable
+that would expand to an empty string.
+
+## Known limitation
+
+Neither tool can attach a language server to an extensionless `Dockerfile` —
+Claude's `extensionToLanguage` keys are extensions only, and OpenCode resolves
+`path.parse(file).ext || file`, which yields the full path for such a file. Use
+`foo.dockerfile` if you want Dockerfile intelligence.

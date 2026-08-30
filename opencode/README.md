@@ -8,7 +8,8 @@ Everything here is **generated** — edit the Claude plugin manifests
 root:
 
 ```sh
-./sync-opencode-lsp.py
+./sync-opencode-lsp.py          # regenerate
+./sync-opencode-lsp.py --check  # fail if out of date (what CI runs)
 ```
 
 ## Layout
@@ -54,10 +55,18 @@ Or paste the entry into an existing `opencode.json` under `lsp`.
 - **`typescript` overrides a built-in.** OpenCode ships its own TypeScript
   server; this entry replaces it to add the `@0no-co/graphqlsp` tsserver plugin
   for embedded GraphQL. Drop the `typescript` key if you want the stock one.
-- **`dockerfile` only matches `*.dockerfile`.** OpenCode routes by file
-  extension, so an extensionless `Dockerfile` won't start the server — the same
-  limitation the Claude plugin has.
-- **`haxe` points at `~/bin/haxe-lsp.js`**, a local build rather than an npm
-  package. Adjust the path in the plugin manifest if yours lives elsewhere.
+- **`dockerfile` only matches `*.dockerfile`.** OpenCode resolves a file's
+  server with `path.parse(file).ext || file`, so an extensionless `Dockerfile`
+  yields its *full path* rather than the string `Dockerfile` — there is no
+  config value that can match it. Claude Code is the same: its
+  `extensionToLanguage` keys are extensions only. Name files `foo.dockerfile`
+  to get language support.
+- **`haxe` points at `{env:HOME}/bin/haxe-lsp.js`**, a local build rather than an
+  npm package. Override by editing the plugin manifest if yours lives
+  elsewhere.
 - **`tailwindcss` deliberately shares extensions** with the `css`, `html`, and
   `typescript` servers; OpenCode runs every server whose extensions match.
+- **`${VAR}` becomes `{env:VAR}`.** The generator rewrites Claude's substitution
+  syntax to OpenCode's. Claude-only variables (`${CLAUDE_PLUGIN_ROOT}`,
+  `${CLAUDE_PLUGIN_DATA}`, `${CLAUDE_PROJECT_DIR}`) have no OpenCode equivalent,
+  so the generator rejects them rather than emit something that expands to `""`.
