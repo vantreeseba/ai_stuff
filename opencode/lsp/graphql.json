@@ -1,0 +1,16 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "lsp": {
+    "graphql": {
+      "command": [
+        "graphql-lsp",
+        "server",
+        "--method=stream"
+      ],
+      "extensions": [
+        ".graphql",
+        ".gql"
+      ]
+    }
+  }
+}
