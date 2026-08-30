@@ -111,6 +111,11 @@ Apollo with a split link: subscriptions over `graphql-ws`, everything else HTTP.
 Always the generated `graphql()` helper against a literal document, fragments
 colocated with the component that reads them.
 
+If a `graphql-frontend` skill is available, read it for the fragment layer —
+component-owned fragments, the two kinds of masking, and how queries compose out
+of them. It is framework-agnostic and applies here unchanged. If not, this skill
+stands on its own.
+
 Cache invalidation evicts root fields by name rather than naming queries. If a
 `simple-ts-frontend` skill is available its cache-invalidation reference covers
 the same `lib/cache.ts` helpers, which are identical here.

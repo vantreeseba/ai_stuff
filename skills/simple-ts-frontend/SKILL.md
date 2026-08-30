@@ -83,6 +83,11 @@ Fragments are named `<Type>_<Consumer>`, the prop type is
 `FragmentType<typeof FRAGMENT>`, and `complete` from `useFragment` must be
 handled.
 
+If a `graphql-frontend` skill is available, read it for the fragment layer in
+depth — component ownership, the two kinds of masking and their two colliding
+`useFragment` functions, composition, and migration. If not, the reference below
+covers what this stack needs.
+
 → **[`references/data-fetching.md`](references/data-fetching.md)** — the
 fragment pattern, loading/error/empty state conventions, why to branch on `data`
 before `loading` under `cache-and-network`, and the `@0no-co/graphqlsp` plugin.
