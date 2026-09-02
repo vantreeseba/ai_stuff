@@ -1,0 +1,19 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "lsp": {
+    "haxe": {
+      "command": [
+        "node",
+        "{env:HOME}/bin/haxe-lsp.js"
+      ],
+      "extensions": [
+        ".hx"
+      ],
+      "initialization": {
+        "displayArguments": [
+          "build.hxml"
+        ]
+      }
+    }
+  }
+}

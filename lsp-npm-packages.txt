@@ -1,0 +1,12 @@
+# npm packages providing the LSP binaries used by both the Claude Code plugins
+# and the OpenCode config. One package per line; # starts a comment.
+#
+# haxe-lsp is a local binary (~/bin/haxe-lsp.js), so it has no package here.
+
+vscode-langservers-extracted
+typescript-language-server
+typescript
+graphql-language-service-cli
+yaml-language-server
+@tailwindcss/language-server
+dockerfile-language-server-nodejs

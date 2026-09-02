@@ -1,0 +1,119 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "lsp": {
+    "css": {
+      "command": [
+        "vscode-css-language-server",
+        "--stdio"
+      ],
+      "extensions": [
+        ".css",
+        ".scss",
+        ".sass",
+        ".less"
+      ]
+    },
+    "dockerfile": {
+      "command": [
+        "docker-langserver",
+        "--stdio"
+      ],
+      "extensions": [
+        ".dockerfile"
+      ]
+    },
+    "graphql": {
+      "command": [
+        "graphql-lsp",
+        "server",
+        "--method=stream"
+      ],
+      "extensions": [
+        ".graphql",
+        ".gql"
+      ]
+    },
+    "haxe": {
+      "command": [
+        "node",
+        "{env:HOME}/bin/haxe-lsp.js"
+      ],
+      "extensions": [
+        ".hx"
+      ],
+      "initialization": {
+        "displayArguments": [
+          "build.hxml"
+        ]
+      }
+    },
+    "html": {
+      "command": [
+        "vscode-html-language-server",
+        "--stdio"
+      ],
+      "extensions": [
+        ".html",
+        ".htm"
+      ]
+    },
+    "json": {
+      "command": [
+        "vscode-json-language-server",
+        "--stdio"
+      ],
+      "extensions": [
+        ".json",
+        ".jsonc"
+      ]
+    },
+    "tailwindcss": {
+      "command": [
+        "tailwindcss-language-server",
+        "--stdio"
+      ],
+      "extensions": [
+        ".html",
+        ".css",
+        ".ts",
+        ".tsx",
+        ".js",
+        ".jsx"
+      ]
+    },
+    "typescript": {
+      "command": [
+        "typescript-language-server",
+        "--stdio"
+      ],
+      "extensions": [
+        ".ts",
+        ".tsx",
+        ".js",
+        ".jsx"
+      ],
+      "initialization": {
+        "plugins": [
+          {
+            "name": "@0no-co/graphqlsp",
+            "location": "node_modules"
+          }
+        ],
+        "tsserver": {
+          "logVerbosity": "off",
+          "useSyntaxServer": "auto"
+        }
+      }
+    },
+    "yaml": {
+      "command": [
+        "yaml-language-server",
+        "--stdio"
+      ],
+      "extensions": [
+        ".yaml",
+        ".yml"
+      ]
+    }
+  }
+}

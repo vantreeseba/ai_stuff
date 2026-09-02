@@ -8,16 +8,9 @@ fi
 
 MARKETPLACE="vantreeseba-local"
 
-# haxe-lsp-plugin uses a local binary — no npm package needed
-NPM_PACKAGES=(
-  vscode-langservers-extracted
-  typescript-language-server
-  typescript
-  graphql-language-service-cli
-  yaml-language-server
-  @tailwindcss/language-server
-  dockerfile-language-server-nodejs
-)
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+mapfile -t NPM_PACKAGES < <(grep -v -e '^\s*#' -e '^\s*$' "${HERE}/../lsp-npm-packages.txt")
 
 PLUGINS=(
   haxe-lsp-plugin

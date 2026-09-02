@@ -1,0 +1,25 @@
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: OpenCode configs are in sync with the plugin manifests
+        run: ./sync-opencode-lsp.py --check
+
+      - name: Shell scripts parse
+        run: |
+          bash -n claude/install-lsps.sh
+          bash -n opencode/install-lsps.sh
+
+      - name: JSON is valid
+        run: |
+          find . -name '*.json' -not -path './.git/*' -print0 \
+            | xargs -0 -I{} python3 -c "import json,sys; json.load(open('{}'))"

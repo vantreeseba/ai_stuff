@@ -11,7 +11,7 @@
     "haxe": {
       "command": "node",
       "args": [
-        "/home/vantreeseba/bin/haxe-lsp.js"
+        "${HOME}/bin/haxe-lsp.js"
       ],
       "extensionToLanguage": {
         ".hx": "haxe"
