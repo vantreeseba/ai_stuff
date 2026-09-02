@@ -14,8 +14,35 @@ jobs:
       - name: OpenCode configs are in sync with the plugin manifests
         run: ./sync-opencode-lsp.py --check
 
+      - name: lsp-npm-packages.txt lists every marketplace plugin
+        run: |
+          python3 - <<'EOF'
+          import json, sys
+
+          listed = [
+              line.split()[0]
+              for line in open("lsp-npm-packages.txt")
+              if line.strip() and not line.lstrip().startswith("#")
+          ]
+          marketplace = [
+              p["name"]
+              for p in json.load(open("claude/.claude-plugin/marketplace.json"))["plugins"]
+          ]
+
+          missing = [p for p in marketplace if p not in listed]
+          extra = [p for p in listed if p not in marketplace]
+          if missing or extra:
+              for p in missing:
+                  print(f"error: {p} is in the marketplace but not lsp-npm-packages.txt")
+              for p in extra:
+                  print(f"error: {p} is in lsp-npm-packages.txt but not the marketplace")
+              sys.exit(1)
+          print(f"ok: {len(listed)} plugin(s) listed in both")
+          EOF
+
       - name: Shell scripts parse
         run: |
+          bash -n install.sh
           bash -n claude/install-lsps.sh
           bash -n opencode/install-lsps.sh
 

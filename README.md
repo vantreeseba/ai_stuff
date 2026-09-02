@@ -89,7 +89,7 @@ opencode configures the same servers in its own `opencode.json`. See
 | `skills/<name>/` | `SKILL.md` + `references/`. |
 | `claude/` | Claude Code plugin marketplace (`vantreeseba-local`) — one LSP plugin per language. |
 | `opencode/` | The same LSP servers as opencode config. Generated. |
-| `lsp-npm-packages.txt` | The npm packages providing the LSP binaries, read by both installers. |
+| `lsp-npm-packages.txt` | Which npm package provides each plugin's LSP binary. Read by all three installers. |
 | `sync-opencode-lsp.py` | Regenerates everything under `opencode/` from the Claude plugin manifests. |
 | `.github/workflows/check.yml` | CI: fails if the generated configs are stale, or if any JSON/shell is broken. |
 
@@ -107,8 +107,17 @@ a regenerate fails the build rather than silently drifting.
 
 That regenerates `opencode/opencode.json`, `opencode/lsp/*.json`, and the
 per-plugin `opencode.json` files. For a brand-new plugin, also add it to
-`claude/.claude-plugin/marketplace.json`, the `PLUGINS` list in
-`claude/install-lsps.sh`, and `lsp-npm-packages.txt` if it needs a new binary.
+`claude/.claude-plugin/marketplace.json` and to `lsp-npm-packages.txt`:
+
+```
+<plugin-name>  [npm-package ...]
+```
+
+That one line is what tells `install.sh` which package to install for the
+plugin, and what puts it in the list `claude/install-lsps.sh` walks — neither
+script hardcodes a plugin or a package. Leave the packages empty for a plugin
+whose binary comes from somewhere else, as `haxe-lsp-plugin` does. CI fails if
+the file and the marketplace disagree in either direction.
 
 The translation between the two formats:
 

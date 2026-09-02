@@ -22,7 +22,12 @@ HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SRC="${HERE}/opencode.json"
 DEST="${XDG_CONFIG_HOME:-$HOME/.config}/opencode/opencode.json"
 
-mapfile -t NPM_PACKAGES < <(grep -v -e '^\s*#' -e '^\s*$' "${HERE}/../lsp-npm-packages.txt")
+# Column 1 of lsp-npm-packages.txt is the plugin, the rest its npm packages.
+# OpenCode installs every server, so take all of them, de-duplicated.
+mapfile -t NPM_PACKAGES < <(
+  awk '!/^[[:space:]]*#/ && NF {for (i = 2; i <= NF; i++) if (!seen[$i]++) print $i}' \
+    "${HERE}/../lsp-npm-packages.txt"
+)
 
 if [[ -z "$CONFIG_ONLY" ]]; then
   echo "==> Installing npm LSP packages globally..."

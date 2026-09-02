@@ -10,18 +10,15 @@ MARKETPLACE="vantreeseba-local"
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-mapfile -t NPM_PACKAGES < <(grep -v -e '^\s*#' -e '^\s*$' "${HERE}/../lsp-npm-packages.txt")
+PACKAGES_FILE="${HERE}/../lsp-npm-packages.txt"
 
-PLUGINS=(
-  haxe-lsp-plugin
-  graphql-lsp-plugin
-  typescript-lsp-plugin
-  css-lsp-plugin
-  html-lsp-plugin
-  json-lsp-plugin
-  yaml-lsp-plugin
-  tailwind-lsp-plugin
-  dockerfile-lsp-plugin
+# Both lists come from lsp-npm-packages.txt, so adding a plugin there is the
+# only edit needed. Column 1 is the plugin, the rest are its npm packages.
+mapfile -t PLUGINS < <(
+  awk '!/^[[:space:]]*#/ && NF {print $1}' "$PACKAGES_FILE"
+)
+mapfile -t NPM_PACKAGES < <(
+  awk '!/^[[:space:]]*#/ && NF {for (i = 2; i <= NF; i++) if (!seen[$i]++) print $i}' "$PACKAGES_FILE"
 )
 
 echo "==> Installing npm LSP packages globally..."

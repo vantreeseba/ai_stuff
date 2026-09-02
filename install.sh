@@ -209,17 +209,19 @@ if [ -n "$MARKETPLACE" ]; then
   done
 fi
 
-# LSP plugins need their language server on PATH. haxe-lsp-plugin ships its own.
+# LSP plugins need their language server on PATH. lsp-npm-packages.txt maps each
+# plugin to the npm packages providing its binary, and is the source of truth the
+# two install-lsps.sh scripts read too. A plugin with no packages listed (such as
+# haxe-lsp-plugin, which uses a local build) yields nothing, which is not an error.
+PACKAGES_FILE="$SRC/lsp-npm-packages.txt"
+
 npm_packages_for() {
-  case "$1" in
-    css-lsp-plugin|html-lsp-plugin|json-lsp-plugin) echo "vscode-langservers-extracted" ;;
-    typescript-lsp-plugin) echo "typescript-language-server typescript" ;;
-    graphql-lsp-plugin)    echo "graphql-language-service-cli" ;;
-    yaml-lsp-plugin)       echo "yaml-language-server" ;;
-    tailwind-lsp-plugin)   echo "@tailwindcss/language-server" ;;
-    dockerfile-lsp-plugin) echo "dockerfile-language-server-nodejs" ;;
-    *) echo "" ;;
-  esac
+  [ -f "$PACKAGES_FILE" ] || return 0
+  awk -v plugin="$1" '
+    !/^[[:space:]]*#/ && $1 == plugin {
+      for (i = 2; i <= NF; i++) printf "%s ", $i
+    }
+  ' "$PACKAGES_FILE"
 }
 
 if [ "$OPT_LIST" = 1 ]; then
